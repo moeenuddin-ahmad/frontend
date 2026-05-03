@@ -1,5 +1,16 @@
 # TenantHub — Frontend
 
+## 🚀 Used Technologies
+
+- React 18 (via Vite)
+- React Router v6
+- Redux Toolkit + RTK Query
+- shadcn/ui
+- React Hook Form + Zod
+- Sonner (Toast Notifications)
+- Lucide React (Icons)
+- Tailwind CSS
+
 ## ⚙️ Environment Variables
 
 Create a `.env` file in the `frontend/` directory:
