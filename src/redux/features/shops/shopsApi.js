@@ -11,7 +11,7 @@ export const shopsApi = baseApi.injectEndpoints({
     }),
     getShopById: builder.query({
       query: (id) => `/shop/${id}`,
-      providesTags: (result, error, id) => [{ type: "Shops", id }],
+      providesTags: (result, error, id) => [{ type: "Shops", id }, "Shops"],
     }),
     createShop: builder.mutation({
       query: (shopData) => ({

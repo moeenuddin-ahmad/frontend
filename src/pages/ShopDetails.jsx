@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Edit, Trash } from "lucide-react";
+import { handleApiError } from "../lib/handleApiError";
 
 function ShopDetails() {
   const { id } = useParams();
@@ -23,9 +24,9 @@ function ShopDetails() {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
         await deleteProduct(productId).unwrap();
-        toast("Product deleted successfully");
+        toast.success("Product deleted successfully");
       } catch (err) {
-        toast("Failed to delete product");
+        handleApiError(err, "Failed to delete product");
       }
     }
   };

@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import { useNavigate, Link } from "react-router-dom";
 import { useRegisterMutation } from "../redux/features/auth/authApi";
+import { handleApiError } from "../lib/handleApiError";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -40,13 +41,10 @@ export default function Register() {
   async function onSubmit(data) {
     try {
       await registerAccount(data).unwrap();
-      toast("Registration successful! You can now login.");
+      toast.success("Registration successful! You can now login.");
       navigate("/login");
     } catch (error) {
-      toast("Registration failed", {
-        description:
-          error?.data?.message || "An error occurred during registration.",
-      });
+      handleApiError(error, "An error occurred during registration.");
     }
   }
 

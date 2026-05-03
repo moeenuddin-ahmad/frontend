@@ -8,6 +8,7 @@ import {
   useGetShopByIdQuery,
   useUpdateShopMutation,
 } from "../redux/features/shops/shopsApi";
+import { handleApiError } from "../lib/handleApiError";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -50,12 +51,10 @@ export default function EditShop() {
   async function onSubmit(data) {
     try {
       await updateShop({ id, body: data }).unwrap();
-      toast("Shop updated successfully!");
+      toast.success("Shop updated successfully!");
       navigate("/");
     } catch (error) {
-      toast("Failed to update shop", {
-        description: error?.data?.message || "An error occurred.",
-      });
+      handleApiError(error, "Failed to update shop");
     }
   }
 

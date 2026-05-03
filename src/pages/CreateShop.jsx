@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import { useNavigate } from "react-router-dom";
 import { useCreateShopMutation } from "../redux/features/shops/shopsApi";
+import { handleApiError } from "../lib/handleApiError";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -41,12 +42,10 @@ export default function CreateShop() {
   async function onSubmit(data) {
     try {
       const result = await createShop(data).unwrap();
-      toast("Shop created successfully!");
+      toast.success("Shop created successfully!");
       navigate(`/shop/${result.id}`);
     } catch (error) {
-      toast("Failed to create shop", {
-        description: error?.data?.message || "An error occurred.",
-      });
+      handleApiError(error, "Failed to create shop");
     }
   }
 

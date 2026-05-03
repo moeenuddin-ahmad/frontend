@@ -8,6 +8,7 @@ import {
   useGetProductQuery,
   useUpdateProductMutation,
 } from "../redux/features/products/productsApi";
+import { handleApiError } from "../lib/handleApiError";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -55,12 +56,10 @@ export default function EditProduct() {
   async function onSubmit(data) {
     try {
       await updateProduct({ id: productId, body: data }).unwrap();
-      toast("Product updated successfully!");
+      toast.success("Product updated successfully!");
       navigate(`/shop/${id}`);
     } catch (error) {
-      toast("Failed to update product", {
-        description: error?.data?.message || "An error occurred.",
-      });
+      handleApiError(error, "Failed to update product");
     }
   }
 

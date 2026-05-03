@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Edit, Trash } from "lucide-react";
+import { handleApiError } from "../lib/handleApiError";
 
 function Shops() {
   const navigate = useNavigate();
@@ -23,9 +24,9 @@ function Shops() {
     if (window.confirm("Are you sure you want to delete this shop?")) {
       try {
         await deleteShop(id).unwrap();
-        toast("Shop deleted successfully");
+        toast.success("Shop deleted successfully");
       } catch (err) {
-        toast("Failed to delete shop");
+        handleApiError(err, "Failed to delete shop");
       }
     }
   };

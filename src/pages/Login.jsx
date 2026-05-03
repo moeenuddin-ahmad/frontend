@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "../redux/features/auth/authApi";
+import { handleApiError } from "../lib/handleApiError";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -42,12 +43,10 @@ export default function Login() {
       if (result.token) {
         localStorage.setItem("token", result.token);
       }
-      toast("Login successful");
+      toast.success("Login successful");
       navigate("/");
     } catch (error) {
-      toast("Login failed", {
-        description: error?.data?.message || "Invalid credentials",
-      });
+      handleApiError(error, "Invalid credentials");
     }
   }
 

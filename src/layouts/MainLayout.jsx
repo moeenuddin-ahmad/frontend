@@ -26,7 +26,7 @@ export default function MainLayout() {
               <div className="bg-blue-600 p-2 rounded-lg text-white group-hover:bg-blue-700 transition">
                 <Store size={20} />
               </div>
-              <span className="tracking-tight">StoreAdmin</span>
+              <span className="tracking-tight">TenantHub</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-600">
               <Link to="/" className="hover:text-black transition-colors">
